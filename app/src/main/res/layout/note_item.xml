@@ -48,11 +48,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/content_lay"
+            android:id="@+id/content_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"
