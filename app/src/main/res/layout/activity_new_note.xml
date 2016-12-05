@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vazhamarshal.myapplication.NewNoteActivity">
+    tools:context="com.vazhamarshal.yesnote.ui.NewNoteActivity">
 
     <EditText
         android:inputType="text"

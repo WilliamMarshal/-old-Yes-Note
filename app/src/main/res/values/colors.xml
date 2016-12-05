@@ -3,6 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="dateAndStroke">#5B000000</color>
     <color name="background">#fff8</color>
+    <color name="btn_add">#7f7f6a</color>
 </resources>

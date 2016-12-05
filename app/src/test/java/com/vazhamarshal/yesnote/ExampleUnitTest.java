@@ -1,4 +1,4 @@
-package com.vazhamarshal.myapplication;
+package com.vazhamarshal.yesnote;
 
 import org.junit.Test;
 
