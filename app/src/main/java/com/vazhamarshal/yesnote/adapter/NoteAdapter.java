@@ -1,7 +1,7 @@
 package com.vazhamarshal.yesnote.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +51,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     public static class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private static SparseArray<Boolean> sStatesMap = new SparseArray<>();
+        private static SparseBooleanArray sExpandedStates = new SparseBooleanArray();
 
         TextView titleView;
         TextView dateView;
@@ -61,33 +61,34 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         public NoteViewHolder(View view) {
             super(view);
 
-            view.setOnClickListener(this);
-
             titleView = (TextView) view.findViewById(R.id.title);
             dateView = (TextView) view.findViewById(R.id.date);
             noteView = (TextView) view.findViewById(R.id.note);
-
             contentRoot = view.findViewById(R.id.content_root);
+
+            view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            int visibility = contentRoot.getVisibility();
-            switch (visibility) {
-                case View.GONE:
-                    visibility = View.VISIBLE;
-                    break;
-                case View.VISIBLE:
-                    visibility = View.GONE;
-                    break;
-            }
-            contentRoot.setVisibility(visibility);
-            sStatesMap.put(getAdapterPosition(), visibility == View.VISIBLE);
+            boolean expanded = isExpanded();
+            expanded = !expanded;
+            setExpanded(expanded);
+
+            sExpandedStates.put(getAdapterPosition(), expanded);
         }
 
-        public void checkState() {
-            Boolean visibility = sStatesMap.get(getAdapterPosition());
-            contentRoot.setVisibility(visibility != null && visibility ? View.VISIBLE : View.GONE);
+        void checkState() {
+            boolean expanded = sExpandedStates.get(getAdapterPosition());
+            setExpanded(expanded);
+        }
+
+        void setExpanded(boolean expanded) {
+            contentRoot.setVisibility(expanded ? View.VISIBLE : View.GONE);
+        }
+
+        boolean isExpanded() {
+            return contentRoot.getVisibility() == View.VISIBLE;
         }
     }
 }
