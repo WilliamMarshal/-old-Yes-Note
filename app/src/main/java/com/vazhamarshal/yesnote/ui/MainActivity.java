@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 
 import com.vazhamarshal.yesnote.R;
 import com.vazhamarshal.yesnote.adapter.NoteAdapter;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mNoteRecyclerView;
+    private ListView mNoteListView;
     private NoteAdapter mNoteAdapter;
 
     @Override
@@ -36,15 +37,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mNoteRecyclerView = (RecyclerView) findViewById(R.id.note_recycler_view);
-        mNoteRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mNoteListView = (ListView) findViewById(R.id.note_listview);
 
         List<Note> sampleNotes = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             sampleNotes.add(new Note(i, "title" + i, new Date().getTime(), "content" + i));
         }
 
-        mNoteAdapter = new NoteAdapter(sampleNotes);
-        mNoteRecyclerView.setAdapter(mNoteAdapter);
+        mNoteAdapter = new NoteAdapter(this, sampleNotes);
+        mNoteListView.setAdapter(mNoteAdapter);
+        mNoteListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 }
